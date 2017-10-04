@@ -15,5 +15,5 @@ function countLetters(string) {
   }
   return lettersInString;
 }
-
+// Test case to be changed as needed
 console.log(countLetters("lighthouse in the house"));
