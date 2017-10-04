@@ -1,4 +1,4 @@
-function countLetters(string) {
+function letterIndex(string) {
   var lettersInString = {};
   //cut out the spaces
   var array = string.replace(/\s/g, '');
@@ -6,13 +6,13 @@ function countLetters(string) {
   for (var i = 0; i < array.length; i++) {
     //if there isnt the letter, insert it
     if (!lettersInString[array[i]]) {
-      lettersInString[array[i]] = 1;
+      lettersInString[array[i]] = [i];
     } else {
       //add another count of the letter
-      lettersInString[array[i]] += 1;
+      lettersInString[array[i]].push(i);
     }
   }
   return lettersInString;
 }
 // Test case to be changed as needed
-console.log(countLetters("lighthouse in the house"));
+console.log(letterIndex("lighthouse in the house"));
