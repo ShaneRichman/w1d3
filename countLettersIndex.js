@@ -1,16 +1,16 @@
+/* jshint esversion:6 */
 function letterIndex(string) {
   var lettersInString = {};
-  //cut out the spaces
-  var array = string.replace(/\s/g, '');
-  //run through the string
-  for (var i = 0; i < array.length; i++) {
-    //if there isnt the letter, insert it
-    if (!lettersInString[array[i]]) {
-      lettersInString[array[i]] = [i];
-    } else {
-      //add another count of the letter
-      lettersInString[array[i]].push(i);
+  for (var i = 0; i < string.length; i++) {
+    const char = string[i];
+    if (char === " ") {
+      continue; // eslint-disable-line no-continue
     }
+
+    if (!lettersInString[char]) {
+      lettersInString[char] = [];
+    }
+    lettersInString[char].push(i);
   }
   return lettersInString;
 }
