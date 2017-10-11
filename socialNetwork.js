@@ -31,10 +31,52 @@ var data = {
   }
 };
 
+// Helper function to list followers of given person
+var whoFollows = function(ID) {
+  var followersArray = [];
+  for (var profile in data) {
+    if (data[profile].follows.includes(ID)) {
+      followersArray.push(data[profile].name);
+    }
+  }
+  // console.log(followersArray);
+  return followersArray;
+};
+// whoFollows("f05");
+
+var idToName = function(arr) {
+  const listOfNames = [];
+  arr.forEach(function(id) {
+    listOfNames.push(data[id].name);
+  });
+  // console.log(listOfNames);
+  return listOfNames;
+};
+// idToName(["f02", "f03", "f04"]);
+
 // List everyone and for each of them, list the names of who they follow and who follows them
 var whoFollowsWho = function() {
-
+  var listWhoFollowsWho = {};
+  for (var person in data) {
+    listWhoFollowsWho[data[person].name] = {
+      follows: idToName(data[person].follows),
+      hasFollowing: whoFollows(person)
+    }
+  }
+  console.log(listWhoFollowsWho);
+  return listWhoFollowsWho;
 };
+/*
+var final = {
+  bob: {
+    follows: [Elizabeth, Finn],
+    hasFollowing: [Debbie, Elizabeth, Finn]
+  },
+  Charlie: [Alice, Debbie]
+};
+*/
+whoFollowsWho();
+
 
 // Identify who follows the most people
 var followsMostPeople = function() {
@@ -52,7 +94,7 @@ var mostFollowersAbove = function() {
 };
 
 // Identify who follows the most people over 30
-var followsMostPeopleAbove = function () {
+var followsMostPeopleAbove = function() {
 
 };
 
@@ -65,6 +107,3 @@ var Stalkers = function() {
 var network = function() {
 
 };
-
-
-
