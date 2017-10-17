@@ -150,26 +150,17 @@ var Stalkers = function() {
   for (let profile in data) {
     const follows = idToName(data[profile].follows);
     const followers = whoFollows(profile);
-    let keepGoing = true;
-
-    follows.forEach(function(name) {
-      if (!followers.includes(name) && keepGoing) {
-        stalkerArray.push(data[profile].name);
-        keepGoing = false;
-      }
-    });
-
     for (var name of follows) {
-      if (!followers.includes(name) && keepGoing) {
+      if (!followers.includes(name)) {
         stalkerArray.push(data[profile].name);
-        keepGoing = false;
+        break;
       }
     }
 
   }
   return stalkerArray;
 };
-// console.log(Stalkers());
+console.log(Stalkers());
 
 // List everyone and their reach (sum of # of followers and # of followers of followers)
 var network = function() {
