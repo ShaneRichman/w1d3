@@ -156,13 +156,25 @@ var Stalkers = function() {
         break;
       }
     }
-
   }
   return stalkerArray;
 };
-console.log(Stalkers());
+// console.log(Stalkers());
 
 // List everyone and their reach (sum of # of followers and # of followers of followers)
 var network = function() {
-
+  const everyoneReach = [];
+  for (let people in data) {
+    const person = data[people];
+    let reach = 0;
+    for (let follower of person.follows) {
+      reach += data[follower].follows.length;
+      reach++;
+    }
+    everyoneReach.push({
+      [person.name]: reach
+    });
+  }
+  return everyoneReach;
 };
+// console.log(network());
